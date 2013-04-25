@@ -1,0 +1,10 @@
+<% provide(:title, 'List of users') %>
+
+<ul>
+  <% @users.each do |user| %>
+    <li>
+      <%= gravatar_of user %>
+      <%= link_to user.name, user %>
+    </li>
+  <% end %>
+</ul>

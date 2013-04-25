@@ -1,0 +1,19 @@
+#!/bin/bash
+
+PROGNAME=$1
+shift
+
+while [ $# -gt 0 ]
+do
+	TESTNAME=${1%.*}
+	shift
+	
+	echo -n "Testing $(tput setaf 3)$TESTNAME$(tput sgr0): "
+	
+	if [[ -z `(./$PROGNAME < "$TESTNAME.in") | diff -b $TESTNAME.out -` ]]
+	then
+		echo "[$(tput setaf 2)ok$(tput sgr0)]"
+	else
+		echo "[$(tput setaf 1)wa$(tput sgr0)]"
+	fi
+done

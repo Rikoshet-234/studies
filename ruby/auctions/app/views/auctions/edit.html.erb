@@ -1,0 +1,19 @@
+<% provide(:title, 'Edit auction') %>
+
+<%= form_for(@auction, html: { class: 'single-form wide-form' }) do |form| %>
+  <h2 class="heading">Edit auction informations.</h2>
+
+  <%= form.label :title %>
+  <%= form.text_field :title, class: 'input-block-level' %>
+
+  <%= form.label :tag_list, 'Tags' %>
+  <%= form.text_field :tag_list, class: 'input-block-level' %>
+
+  <%= form.label :content %>
+  <%= form.text_area :content, class: 'input-block-level' %>
+
+  <%= form.label :finish_date, 'Expire in' %>
+  <%= form.select :finish_date, @auction.days_assoc, {}, class: 'input-block-level' %>
+
+  <%= form.submit 'Save changes', class: 'btn btn-large btn-primary' %>
+<% end %>

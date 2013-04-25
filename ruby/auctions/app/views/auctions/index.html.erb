@@ -1,0 +1,12 @@
+<% provide(:title, 'All auctions') %>
+
+<h1>List of all auctions <%= " with tag #{@tag.name}" if @tag %></h1>
+
+<ul>
+  <% @auctions.each do |auction| %>
+    <li>
+      <h5><%= link_to auction.title, auction %></h5>
+      <p><%= "#{auction.content[0..200]}..." %></p>
+    </li>
+  <% end %>
+</ul>

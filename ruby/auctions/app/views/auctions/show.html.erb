@@ -1,0 +1,60 @@
+<% provide(:title, @auction.title) %>
+
+<% if current_user?(@auction.user) %>
+  <%= link_to 'Edit this page', edit_auction_path(@auction) %>
+
+  <%= link_to 'Close auction now', finish_auction_path(@auction) if @auction.active? %>
+<% end %>
+
+<h1><%= @auction.title %></h1>
+<h5>created by <%= link_to @auction.user.name, @auction.user %></h5>
+<h6><%= time_ago_in_words(@auction.created_at) %> ago</h6>
+
+<% if @auction.active? %>
+  <h6>expires at <%= @auction.finish_date %></h6>
+<% else %>
+  <h6 class='alert alert-notice'>Auction has been finished.</h6>
+<% end %>
+
+Tags:
+<ul class="tag-list">
+  <% @auction.tags.each do |tag| %>
+    <li><%= link_to tag.name, tag_path(tag.name) %></li>
+  <% end %>
+</ul>
+
+<p><%= @content.html_safe %></p>
+
+<% if @auction.bids.empty? %>
+  <p>no bids yet, be first!></p>
+<% else %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>bid</td>
+        <th>user</td>
+        <th>date</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @auction.bids.each do |bid| %>
+        <tr>
+          <td><%= bid.value %>$</td>
+          <td><%= link_to bid.user.name, bid.user %></td>
+          <td><%= bid.created_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<% if signed_in? and @auction.active? %>
+  <%= form_for(@bid, html: { class: 'single-form', style: 'max-width: 150px'}) do |form| %>
+    <%= form.label :value, 'Place your bid' %>
+    <%= form.text_field :value, value: @bid_value, class: 'input-block-level' %>
+
+    <%= form.hidden_field :auction_id %>
+
+    <%= form.submit 'Bid!', class: 'btn btn-primary' %>
+  <% end %>
+<% end %>

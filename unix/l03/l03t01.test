@@ -1,0 +1,13 @@
+#include <cstdio>
+
+int main()
+{
+	// Tutaj informacja o zmiennej a.
+	int a = 10;
+
+	// // // Informacje o zmiennej b. //
+	int b = 30;
+
+	// Informacje | o zmiennej | c.
+	int c = 300;
+}

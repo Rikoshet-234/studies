@@ -1,0 +1,13 @@
+<% provide(:title, @user.name) %>
+
+<%= gravatar_of @user %>
+<%= @user.name %> (<%= @user.email %>)
+
+<% if @user.auctions.any? %>
+  User has <%= @user.auctions.count %> auctions:
+  <ul>
+    <% @user.auctions.each do |auction| %>
+      <li><%= link_to auction.title, auction %></li>
+    <% end %>
+  </ul>
+<% end %>

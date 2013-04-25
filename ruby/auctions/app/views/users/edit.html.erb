@@ -1,0 +1,17 @@
+<% provide(:title, 'Edit informations') %>
+
+<%= form_for(@user, html: { class: 'single-form' }) do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name, class: 'input-block-level' %>
+
+  <%= form.label :email %>
+  <%= form.text_field :email, class: 'input-block-level' %>
+
+  <%= form.label :password %>
+  <%= form.password_field :password, class: 'input-block-level' %>
+
+  <%= form.label :password_confirmation %>
+  <%= form.password_field :password_confirmation, class: 'input-block-level' %>
+
+  <%= form.submit 'Update profile', class: 'btn btn-large btn-primary' %>
+<% end %>

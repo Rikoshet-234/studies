@@ -1,0 +1,13 @@
+<% provide(:title, 'Sign in') %>
+
+<%= form_for(:session, url: sessions_path, html: { class: 'single-form' }) do |form| %>
+  <h2 class="heading">Sign in</h2>
+  
+  <%= form.label :email %>
+  <%= form.text_field :email, class: 'input-block-level' %>
+
+  <%= form.label :password %>
+  <%= form.password_field :password, class: 'input-block-level' %>
+
+  <%= form.submit 'Sign in', class: 'btn btn-large btn-primary' %>
+<% end %>
