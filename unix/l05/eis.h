@@ -5,6 +5,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
+#include <string.h>
 
 #include <unistd.h>
 #include <fcntl.h>
@@ -35,6 +37,7 @@ void astud(struct student s);
 void acourse(struct course c);
 void agrade(struct grade g);
 int fgrade(struct grade g);
+int fgnames(char *sname, char *cname);
 void mgrade(struct grade g);
 void rgrade(struct grade g);
 

@@ -2,69 +2,104 @@
 
 void astud(struct student s)
 {
-	int fd = handle(
+	int sd = handle(
 		"opening students database [astud]",
-		open(STUDENTS, O_WRONLY | O_APPEND)
+		oplock(STUDENTS, O_WRONLY | O_APPEND)
 	);
-	handle(
-		"create lock on students database",
-		flock(fd, F_LOCK, 0)
-	);
-
-	write(fd, &s, sizeof(s));
-	close(fd);
+	write(sd, &s, sizeof(s));
+	close(sd);
 }
 
 void acourse(struct course c)
 {
-	int fd = handle(
+	int cd = handle(
 		"opening courses database [acourse]",
-		open(COURSES, O_WRONLY | O_APPEND)
-	);
-	handle(
-		"create lock on courses database",
-		flock(fd, F_LOCK, 0)
+		oplock(COURSES, O_WRONLY | O_APPEND)
 	);
 	
-	write(fd, &c, sizeof(c));
-	close(fd);
+	write(cd, &c, sizeof(c));
+	close(cd);
 }
 
 void agrade(struct grade g)
 {
-	int fd = handle(
+	int gd = handle(
 		"opening grades database [agrade]",
-		open(GRADES, O_WRONLY | O_APPEND)
-	);
-	handle(
-		"create lock on grades database",
-		flock(fd, F_LOCK, 0)
+		oplock(GRADES, O_WRONLY | O_APPEND)
 	);
 
-	write(fd, &g, sizeof(g));
-	close(fd);
+	write(gd, &g, sizeof(g));
+	close(gd);
 }
 
 int fgrade(struct grade g)
 {
-	int fd = handle(
+	int gd = handle(
 		"opening grades database [fgrade]",
-		open(GRADES, O_RDONLY)
-	);
-	handle(
-		"create lock on grades database",
-		flock(fd, F_LOCK, 0)
+		oplock(GRADES, O_RDONLY)
 	);
 
+	/* Search for given grade in the database. */
 	struct grade c;
-	while (read(fd, &c, sizeof(c)) > 0) {
+	while (read(gd, &c, sizeof(c)) > 0) {
 		if (g.id == c.id && g.index == c.index) {
 			return c.value;
 		}
 	}
 
-	close(fd);
+	close(gd);
 	return -1;
+}
+
+int fgnames(char *sname, char *cname)
+{
+	bool found; /* Has record been found? */
+	
+	/* Search for index of given student name. */
+	int sd = handle(
+		"opening students database [fgnames]",
+		oplock(STUDENTS, O_RDONLY)
+	);
+	
+	found = false;
+	struct student s;
+	while (read(sd, &s, sizeof(s)) > 0) {
+		if (strcmp(s.name, sname) == 0) {
+			found = true;
+			break;
+		}
+	}
+	close(sd);
+
+	if (!found) {
+		return -1;
+	}
+
+	/* Serch for course id of given course name. */
+	int cd = handle(
+		"opening courses database [fgnames]",
+		oplock(COURSES, O_RDONLY)
+	);
+
+	found = false;
+	struct course c;
+	while (read(cd, &c, sizeof(c)) > 0) {
+		if (strcmp(c.name, cname) == 0) {
+			found = true;
+			break;
+		}
+	}
+	close(cd);
+
+	if (!found) {
+		return -1;
+	}
+
+	struct grade g;
+	g.index = s.index;
+	g.id = c.id;
+
+	return fgrade(g);
 }
 
 void mgrade(struct grade g)
@@ -77,11 +112,7 @@ void rgrade(struct grade g)
 {
 	int gd = handle(
 		"opening grades database [rgrade]",
-		open(GRADES, O_RDONLY | O_CREAT)
-	);
-	handle(
-		"create lock on grades database",
-		flock(gd, F_LOCK, 0)
+		oplock(GRADES, O_RDONLY | O_CREAT)
 	);
 
 	char template[] = "/tmp/fileXXXXXX";
@@ -101,11 +132,7 @@ void rgrade(struct grade g)
 
 	gd = handle(
 		"opening grades database",
-		open(GRADES, O_WRONLY | O_TRUNC)
-	);
-	handle(
-		"create lock on grades database",
-		flock(gd, F_LOCK, 0)
+		oplock(GRADES, O_WRONLY | O_TRUNC)
 	);
 	lseek(nd, 0, SEEK_SET);
 

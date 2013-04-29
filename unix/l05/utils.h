@@ -6,6 +6,12 @@
 #include <string.h>
 #include <errno.h>
 
-int handle(const char *desc, int retv);
+#include <unistd.h>
+#include <fcntl.h>
+
+int handle(const char *desc, const int retv);
+int oplock(const char *pathname, const int flags);
+
+#define OPTARG(v, short, long) (strcmp(v, short) == 0 || strcmp(v, long) == 0)
 
 #endif

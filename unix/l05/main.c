@@ -11,7 +11,7 @@ int main(int argc, char **argv)
 		return 1;
 	}
 
-	if (strcmp(argv[1], "-s") == 0) {
+	if (OPTARG(argv[1], "-s", "--add-student")) {
 		struct student s;
 		sscanf(argv[2], "%d", &s.index);
 		sscanf(argv[3], "%s", s.name);
@@ -19,7 +19,7 @@ int main(int argc, char **argv)
 		return 0;
 	}
 
-	if (strcmp(argv[1], "-k") == 0) {
+	if (OPTARG(argv[1], "-k", "--add-course")) {
 		struct course c;
 		sscanf(argv[2], "%d", &c.id);
 		sscanf(argv[3], "%s", c.name);
@@ -27,7 +27,7 @@ int main(int argc, char **argv)
 		return 0;
 	}
 
-	if (strcmp(argv[1], "-a") == 0) {
+	if (OPTARG(argv[1], "-a", "--add-grade")) {
 		struct grade g;
 		sscanf(argv[2], "%d", &g.index);
 		sscanf(argv[3], "%d", &g.id);
@@ -36,7 +36,7 @@ int main(int argc, char **argv)
 		return 0;
 	}
 
-	if (strcmp(argv[1], "-f") == 0) {
+	if (OPTARG(argv[1], "-f", "--find")) {
 		struct grade g;
 		sscanf(argv[2], "%d", &g.index);
 		sscanf(argv[3], "%d", &g.id);
@@ -50,7 +50,17 @@ int main(int argc, char **argv)
 		return 0;
 	}
 
-	if (strcmp(argv[1], "-m") == 0) {		
+	if (OPTARG(argv[1], "-fn", "--find-by-names")) {
+		int grade = fgnames(argv[2], argv[3]);
+		if (grade < 0) {
+			printf("Grade not found.\n");
+			return 1;
+		}
+		printf("%d\n", grade);
+		return 0;
+	}
+
+	if (OPTARG(argv[1], "-m", "--modify-grade")) {		
 		struct grade g;
 		sscanf(argv[2], "%d", &g.index);
 		sscanf(argv[3], "%d", &g.id);
@@ -59,7 +69,7 @@ int main(int argc, char **argv)
 		return 0;
 	}
 
-	if (strcmp(argv[1], "-u") == 0) {
+	if (OPTARG(argv[1], "-u", "--remove-grade"))) {
 		struct grade g;
 		sscanf(argv[2], "%d", &g.index);
 		sscanf(argv[3], "%d", &g.id);
