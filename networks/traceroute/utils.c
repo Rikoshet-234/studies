@@ -65,8 +65,7 @@ static void printhelp()
 		"  -m maxttl   | --maxttl maxttl\n"
 		"    Set maximum TTL value (default: 30).\n"
 		"  -r requests | --requests requests\n"
-		"    Set number of requests for each TTL value (default: 3).\n"
-	);
+		"    Set number of requests for each TTL value (default: 3).\n"	);
 }
 
 #define OPTARG(v, short, long) (strcmp(v, short) == 0 || strcmp(v, long) == 0)
