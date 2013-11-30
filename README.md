@@ -24,5 +24,9 @@ Folder dedicated something named *Programming L*. But do not be misled by the na
 ### ruby
 Ruby sources for the course of, well, *Ruby programming language*. Although I am pretty familiar with Ruby itself I cannot say the same thing about Rails. So this folder contains my first steps in Rails world.
 
+### python
+Python sources for the course of *extended Python* (not sure about the *extended* part though). Everything in that folder should be compatible with Python 3.
+
+
 ### unix
 Scripts and small C programs for the course of *Working in UNIX environment*. Most of them should work on any POSIX compatible system (tested on Linux and Solaris).
