@@ -9,6 +9,9 @@ Folders
 ### afitsd
 A few code snippets for *Functional Algorithms and Persistent Data Structures*. The course was based mainly on *Purely Functional Data Structures* by Chris Okasaki, so these are probably solutions to the book exercises.
 
+### afp
+Slides and exercise solutions for *Advanced Functional Programming* seminar.
+
 ### aisd
 Bunch of small programs for the course of *Algorithms and Data Structures*. Most of them just reads data from standard input, solves particular problem and writes solution to standard output. They are supposed to be judged by one of the automatic online testers so I didn't care much about code design. Name of file maps to the task codename in Themis judge.
 
