@@ -18,6 +18,9 @@ Programs and documents related to the course of *Numerical Analysis*.
 ### ask
 Short MIPS assembly sources for the course of *Architectures of Computer Systems*.
 
+### esys
+Programs created for *Embedded Systems* course. Most of them require Arduino IDE, but some will work with a classic C compiler.
+
 ### networks
 Programs for the course of *Computer Networks*. They are doing pretty low-level networking stuff and make heavy use of Unix libraries.
 
