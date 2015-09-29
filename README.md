@@ -6,6 +6,9 @@ Repository containing things that university wants me to do. It implies that com
 Folders
 -------
 
+### afitsd
+A few code snippets for *Functional Algorithms and Persistent Data Structures*. The course was based mainly on *Purely Functional Data Structures* by Chris Okasaki, so these are probably solutions to the book exercises.
+
 ### aisd
 Bunch of small programs for the course of *Algorithms and Data Structures*. Most of them just reads data from standard input, solves particular problem and writes solution to standard output. They are supposed to be judged by one of the automatic online testers so I didn't care much about code design. Name of file maps to the task codename in Themis judge.
 
@@ -26,7 +29,6 @@ Ruby sources for the course of, well, *Ruby programming language*. Although I am
 
 ### python
 Python sources for the course of *extended Python* (not sure about the *extended* part though). Everything in that folder should be compatible with Python 3.
-
 
 ### unix
 Scripts and small C programs for the course of *Working in UNIX environment*. Most of them should work on any POSIX compatible system (tested on Linux and Solaris).
