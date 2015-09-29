@@ -18,6 +18,9 @@ Programs and documents related to the course of *Numerical Analysis*.
 ### ask
 Short MIPS assembly sources for the course of *Architectures of Computer Systems*.
 
+### coq
+Assignment solutions for *Fundamentals of Programming Languages in Coq* lecture. Some sources are chapters copied from the *Software Foundations* book by Benjamin Pierce with exercise sections filled-in.
+
 ### esys
 Programs created for *Embedded Systems* course. Most of them require Arduino IDE, but some will work with a classic C compiler.
 
