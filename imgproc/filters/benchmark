@@ -1,0 +1,12 @@
+#!/bin/bash
+
+for task in "a1" "a2" "a3" "a4" "a5";
+do
+	for n in 5 10 20 25 30 50 100;
+	do
+		echo "Running task $task with n = $n..."
+		time ./filters $task $n
+		echo ""
+		echo ""
+	done 
+done

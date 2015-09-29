@@ -1,0 +1,11 @@
+#!/bin/bash
+
+for task in "b1" "b2" "b3";
+do
+	./filters $task 20 "$1/out_waves_$task.bmp"
+
+	if [ "$#" -eq 2 ];
+	then
+		./filters $task 20 "$1/out_custom_$task.bmp" "$2"
+	fi
+done

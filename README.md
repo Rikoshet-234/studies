@@ -27,6 +27,9 @@ Assignment solutions for *Fundamentals of Programming Languages in Coq* lecture.
 ### esys
 Programs created for *Embedded Systems* course. Most of them require Arduino IDE, but some will work with a classic C compiler.
 
+### imgproc
+Small programs and one bigger project for *Fundamentals of Image Processing* course.
+
 ### networks
 Programs for the course of *Computer Networks*. They are doing pretty low-level networking stuff and make heavy use of Unix libraries.
 
